@@ -1,72 +1,66 @@
-import { useState } from 'react';
-import './App.css';
-
-// Import your components here
-// import Button from './components/Button';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import TaskManager from './components/TaskManager';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { TasksProvider } from './context/TasksContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { Dashboard } from './pages';
+import {Footer } from './components';
+import AddNew from "./components/AddNew";
+import NewTask from "./components/NewTask";
+import PostsList from "./components/Posts/PostsList";
+import { TaskList } from './components/Tasks';
+import Calendar from "./components/Calendar";
+import Settings from "./components/Settings";
+import Alarm from "./components/Alarm";
+import { Profile } from './components';
 
 function App() {
-  const [count, setCount] = useState(0);
+  // Use state to track sign-in status
+  const [isSignedIn, setIsSignedIn] = useState(() => !!(localStorage.getItem('profileName') && localStorage.getItem('profileEmail')));
+
+  useEffect(() => {
+    // Listen for localStorage changes (e.g., from Profile component or other tabs)
+    const handleStorage = () => {
+      setIsSignedIn(!!(localStorage.getItem('profileName') && localStorage.getItem('profileEmail')));
+    };
+    window.addEventListener('storage', handleStorage);
+    // Optionally, listen for custom events in the same tab
+    window.addEventListener('profileChange', handleStorage);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('profileChange', handleStorage);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Navbar component will go here */}
-      <header className="bg-white dark:bg-gray-800 shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold">PLP Task Manager</h1>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-lg mb-4">
-              Edit <code className="font-mono bg-gray-200 dark:bg-gray-700 p-1 rounded">src/App.jsx</code> and save to test HMR
-            </p>
-            
-            <div className="flex items-center gap-4 my-4">
-              <button
-                onClick={() => setCount((count) => count - 1)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-              >
-                -
-              </button>
-              <span className="text-xl font-bold">{count}</span>
-              <button
-                onClick={() => setCount((count) => count + 1)}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
-              >
-                +
-              </button>
+    <ThemeProvider>
+      <TasksProvider>
+        <Router>
+          <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-blue-100">
+            {/* Show Profile modal if not signed in */}
+            {!isSignedIn && <Profile />}
+            {/* Blur background when not signed in */}
+            <div className={`flex flex-1${!isSignedIn ? ' filter blur-sm pointer-events-none select-none' : ''}`}>
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/alarm" element={<Alarm />} />
+                  <Route path="/add" element={<AddNew />} />
+                  <Route path="/add-task" element={<NewTask />} />
+                  <Route path="/add-post" element={<PostsList />} />
+                  <Route path="/posts" element={<PostsList />} />
+                  <Route path="/tasks" element={<TaskList />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+              </main>
             </div>
-
-            <p className="text-gray-500 dark:text-gray-400 mt-4">
-              Implement your TaskManager component here
-            </p>
+            <Footer />
           </div>
-        </div>
-        
-        {/* API data display will go here */}
-        <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">API Data</h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            Fetch and display data from an API here
-          </p>
-        </div>
-      </main>
-
-      {/* Footer component will go here */}
-      <footer className="bg-white dark:bg-gray-800 shadow mt-auto">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} PLP Task Manager. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+        </Router>
+      </TasksProvider>
+    </ThemeProvider>
   );
 }
 
-export default App; 
+export default App;

@@ -1,71 +1,59 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19849364&assignment_repo_type=AssignmentRepo)
-# React.js and Tailwind CSS Assignment
+# Personal Task & Quote Dashboard
 
-This assignment focuses on building a responsive React application using JSX and Tailwind CSS, implementing component architecture, state management, hooks, and API integration.
+This project is a personal task and quote dashboard built using React, Vite, and Tailwind CSS. It allows users to manage their tasks and view random quotes, providing a simple and elegant interface for productivity.
 
-## Assignment Overview
+## Features
 
-You will:
-1. Set up a React project with Vite and Tailwind CSS
-2. Create reusable UI components
-3. Implement state management using React hooks
-4. Integrate with external APIs
-5. Style your application using Tailwind CSS
+- **Task Management**: Add, delete, and mark tasks as completed.
+- **Quote Display**: Fetch and display random quotes from an external API.
+- **Responsive Design**: Built with Tailwind CSS for a responsive and modern UI.
+
+## Technologies Used
+
+- React
+- Vite
+- Tailwind CSS
+- Custom Hooks
+- Context API
 
 ## Getting Started
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
+To get a local copy up and running, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/personal-task-quote-dashboard.git
    ```
+
+2. **Navigate to the project directory**:
+   ```bash
+   cd personal-task-quote-dashboard
+   ```
+
+3. **Install dependencies**:
+   ```bash
    npm install
    ```
-4. Start the development server:
-   ```
+
+4. **Run the application**:
+   ```bash
    npm run dev
    ```
 
-## Files Included
+5. **Open your browser** and go to `http://localhost:3000` to see the application in action.
 
-- `Week3-Assignment.md`: Detailed assignment instructions
-- Starter files for your React application:
-  - Basic project structure
-  - Pre-configured Tailwind CSS
-  - Sample component templates
+## Folder Structure
 
-## Requirements
+- `src/components`: Contains all the React components for the application.
+- `src/hooks`: Custom hooks for managing state and API interactions.
+- `src/api`: Functions for API calls related to tasks and quotes.
+- `src/context`: Context API setup for managing global state.
+- `src`: Main application files including entry point and styles.
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Code editor (VS Code recommended)
+## Contributing
 
-## Project Structure
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
 
-```
-src/
-├── components/       # Reusable UI components
-├── pages/           # Page components
-├── hooks/           # Custom React hooks
-├── context/         # React context providers
-├── api/             # API integration functions
-├── utils/           # Utility functions
-└── App.jsx          # Main application component
-```
+## License
 
-## Submission
-
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Complete all required components and features
-2. Implement proper state management with hooks
-3. Integrate with at least one external API
-4. Style your application with Tailwind CSS
-5. Deploy your application and add the URL to your README.md
-
-## Resources
-
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Router Documentation](https://reactrouter.com/) 
+This project is licensed under the MIT License. See the LICENSE file for details.
