@@ -6,7 +6,7 @@ const Footer = () => (
       &copy; {new Date().getFullYear()} Personal Task & Quote Dashboard. All rights reserved.
     </div>
     <div className="mt-1">
-      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-200">GitHub</a>
+      <a href="https://github.com/PLP-MERN-Stack-Development/week-3-react-js-assignment-smunyondi.git" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-200">GitHub</a>
     </div>
   </footer>
 );
