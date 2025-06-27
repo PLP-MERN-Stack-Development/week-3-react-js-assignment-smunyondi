@@ -19,13 +19,13 @@ const TaskCards = () => {
         {latestTasks.map((task, idx) => (
           <button
             key={task.id || idx}
-            className={`flex flex-col bg-gradient-to-br ${CARD_COLORS[idx % CARD_COLORS.length]} rounded-2xl shadow-xl p-6 sm:p-8 transition-transform hover:scale-105 hover:shadow-2xl focus:outline-none`}
+            className={`flex flex-col bg-gradient-to-br ${CARD_COLORS[idx % CARD_COLORS.length]} dark:from-gray-800 dark:via-gray-700 dark:to-gray-600 rounded-2xl shadow-xl p-6 sm:p-8 transition-transform hover:scale-105 hover:shadow-2xl focus:outline-none transition-colors duration-300`}
             onClick={() => setSelectedTask(task)}
             tabIndex={0}
             type="button"
           >
-            <h3 className="font-bold text-lg sm:text-xl text-white mb-2 truncate">{task.title}</h3>
-            <p className="text-white/90 text-sm sm:text-base mb-4 overflow-hidden break-words" style={{maxHeight: '4.5em'}}>
+            <h3 className="font-bold text-lg sm:text-xl text-white dark:text-gray-100 mb-2 truncate">{task.title}</h3>
+            <p className="text-white/90 dark:text-gray-200 text-sm sm:text-base mb-4 overflow-hidden break-words" style={{maxHeight: '4.5em'}}>
               {task.desc || task.description || 'No description.'}
             </p>
             {Array.isArray(task.tags) && task.tags.length > 0 && (
@@ -33,7 +33,7 @@ const TaskCards = () => {
                 {task.tags.map(tag => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 bg-white/20 text-white text-xs rounded-full font-semibold shadow-sm"
+                    className="px-2 py-0.5 bg-white/20 dark:bg-gray-700 text-white dark:text-gray-100 text-xs rounded-full font-semibold shadow-sm"
                   >
                     #{tag}
                   </span>

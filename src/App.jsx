@@ -35,7 +35,7 @@ function App() {
     <ThemeProvider>
       <TasksProvider>
         <Router>
-          <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-blue-100">
+          <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-blue-100 dark:bg-gray-900 dark:text-gray-100">
             {/* Show Profile modal if not signed in */}
             {!isSignedIn && <Profile />}
             {/* Blur background when not signed in */}

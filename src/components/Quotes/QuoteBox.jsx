@@ -35,7 +35,7 @@ const QuoteBox = () => {
 
     return (
         <div
-            className="p-6 bg-blue-50 border-l-4 border-blue-400 rounded shadow-md text-center cursor-pointer select-none"
+            className="p-6 bg-blue-50 dark:bg-gray-900 border-l-4 border-blue-400 dark:border-blue-600 rounded shadow-md text-center cursor-pointer select-none transition-colors duration-300"
             onClick={getQuote}
             title="Click to refresh the quote"
         >
@@ -43,11 +43,11 @@ const QuoteBox = () => {
                 style={{ minHeight: '3.5em' }}
             >
                 {loading ? (
-                    <span>Loading...</span>
+                    <span className="text-blue-800 dark:text-blue-200">Loading...</span>
                 ) : (
                     <>
-                        <p className="text-xl italic text-blue-800 mb-2">"{quote?.content}"</p>
-                        <small className="text-blue-600 font-semibold">- {quote?.author}</small>
+                        <p className="text-xl italic text-blue-800 dark:text-blue-200 mb-2">"{quote?.content}"</p>
+                        <small className="text-blue-600 dark:text-blue-400 font-semibold">- {quote?.author}</small>
                     </>
                 )}
             </div>

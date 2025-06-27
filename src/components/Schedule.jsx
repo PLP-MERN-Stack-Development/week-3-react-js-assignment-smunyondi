@@ -62,7 +62,7 @@ const Schedule = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-4 sm:p-6 transition-colors duration-300">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
         <h3 className="font-bold text-lg flex items-center gap-2">
           <span className="bg-blue-100 text-blue-700 rounded-full p-2 text-xl">📅</span>
@@ -77,7 +77,7 @@ const Schedule = () => {
       </div>
       <div className="flex flex-col gap-4">
         {schedules.map((item, idx) => (
-          <div key={idx} className={`rounded-xl p-4 flex flex-col gap-2 text-white shadow ${item.color}`}>
+          <div key={idx} className={`rounded-xl p-4 flex flex-col gap-2 text-white shadow ${item.color} dark:bg-gray-800 dark:text-gray-100 transition-colors duration-300`}>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div className="font-semibold">{item.title}</div>
               <span className="text-xs font-bold">{item.time}</span>
@@ -90,13 +90,13 @@ const Schedule = () => {
             </div>
             <div className="flex gap-2 mt-2">
               <button
-                className="px-2 py-1 bg-yellow-400 text-xs rounded hover:bg-yellow-500"
+                className="px-2 py-1 bg-yellow-400 dark:bg-yellow-600 text-xs rounded hover:bg-yellow-500 dark:hover:bg-yellow-700"
                 onClick={() => openForm(idx)}
               >
                 Edit
               </button>
               <button
-                className="px-2 py-1 bg-red-500 text-xs rounded hover:bg-red-600"
+                className="px-2 py-1 bg-red-500 dark:bg-red-700 text-xs rounded hover:bg-red-600 dark:hover:bg-red-800"
                 onClick={() => handleDelete(idx)}
               >
                 Delete
@@ -112,7 +112,7 @@ const Schedule = () => {
           onClick={() => setShowForm(false)}
         >
           <form
-            className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg flex flex-col gap-4"
+            className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 w-full max-w-lg flex flex-col gap-4 transition-colors duration-300"
             onSubmit={handleSubmit}
             onClick={e => e.stopPropagation()}
           >

@@ -37,7 +37,7 @@ const Sidebar = () => {
   }, [dropdownOpen]);
 
   return (
-    <nav className="flex flex-col items-center bg-white border-r min-h-screen w-16 py-4 shadow-sm">
+    <nav className="flex flex-col items-center bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 min-h-screen w-16 py-4 shadow-sm transition-colors duration-300">
       {/* Logo at the top, clickable to go home */}
       <button onClick={() => navigate("/")}
         className="focus:outline-none mb-6">

@@ -62,13 +62,13 @@ const NewTask = ({ onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-4 sm:p-6 transition-colors duration-300">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
         </label>
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
           value={title}
           onChange={e => setTitle(e.target.value)}
           required
@@ -77,7 +77,7 @@ const NewTask = ({ onClose }) => {
         />
       </div>
       <textarea
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60"
+        className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
         placeholder="Task Description"
         value={desc}
         onChange={e => setDesc(e.target.value)}
@@ -89,11 +89,11 @@ const NewTask = ({ onClose }) => {
             key={tag}
             type="button"
             onClick={() => toggleTag(tag)}
-            className={`px-3 py-1 rounded-full text-sm border transition ${
-              selectedTags.includes(tag)
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-blue-100'
-            }`}
+            className={`px-3 py-1 rounded-full text-sm border transition
+              ${selectedTags.includes(tag)
+                ? 'bg-blue-600 text-white border-blue-600 dark:bg-blue-800 dark:border-blue-800'
+                : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-blue-100 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-blue-900'
+              }`}
           >
             {tag}
           </button>
@@ -109,8 +109,8 @@ const NewTask = ({ onClose }) => {
               onClick={() => toggleMember(member.name)}
               className={`px-3 py-1 rounded-full text-xs font-semibold border transition
                 ${selectedMembers.includes(member.name)
-                  ? `${member.color} border-blue-600 ring-2 ring-blue-300`
-                  : `bg-gray-100 text-gray-600 border-gray-200 hover:bg-blue-100`
+                  ? `${member.color} border-blue-600 ring-2 ring-blue-300 dark:ring-blue-800`
+                  : `bg-gray-100 text-gray-600 border-gray-200 hover:bg-blue-100 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-blue-900`
                 }`}
               style={{ outline: 'none' }}
             >

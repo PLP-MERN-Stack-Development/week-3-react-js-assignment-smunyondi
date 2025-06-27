@@ -71,7 +71,7 @@ const Profile = () => {
   if (location.pathname === "/profile") {
     if (!signedIn) {
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 dark:bg-gray-900 dark:border-blue-600">
           <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8">
             <div className="flex justify-center mb-6">
               <button

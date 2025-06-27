@@ -32,7 +32,7 @@ const TaskList = () => {
   const percent = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 transition-colors duration-300">
       {/* Heading */}
       <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100 tracking-tight">
         Tasks

@@ -19,7 +19,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 dark:border-blue-600">
       {/* Sidebar for desktop */}
       <div className="hidden lg:block fixed top-0 left-0 h-screen w-20 z-40">
         <Sidebar />
@@ -49,7 +49,7 @@ const Dashboard = () => {
       {/* Mobile Sidebar */}
       {menuOpen && (
         <div
-          className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 flex flex-col p-4"
+          className="dark:bg-gray-900 dark:border-blue-600 fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 flex flex-col p-4"
         >
           <button
             className="self-end mb-4 text-gray-500 hover:text-red-500 text-2xl"
@@ -63,25 +63,25 @@ const Dashboard = () => {
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col lg:flex-row lg:ml-20">
+      <div className="flex-1 flex flex-col lg:flex-row lg:ml-20 dark:bg-gray-900 dark:border-blue-600">
         <main className="flex-1 p-4 sm:p-6">
           <Header onLogout={handleLogout} />
-          <div className="bg-white rounded-xl shadow p-4 sm:p-6 mb-4 sm:mb-6">
+          <div className="bg-white rounded-xl shadow p-4 sm:p-6 mb-4 sm:mb-6 dark:bg-gray-900 dark:border-blue-600">
             <TaskCards />
           </div>
-          <div className="mb-4 sm:mb-6">
+          <div className="mb-4 sm:mb-6 dark:bg-gray-900 dark:border-blue-600">
             <QuoteBox />
           </div>
-          <div className="bg-white rounded-xl shadow p-4 sm:p-6 mb-4 sm:mb-6">
+          <div className="bg-white rounded-xl shadow p-4 sm:p-6 mb-4 sm:mb-6 dark:bg-gray-900 dark:border-blue-600">
             <TaskList />
           </div>
-          <div className="bg-white rounded-xl shadow p-4 sm:p-6">
+          <div className="bg-white rounded-xl shadow p-4 sm:p-6 dark:bg-gray-900 dark:border-blue-600">
             <h2 className="text-lg sm:text-xl font-bold mb-4">Recent Posts</h2>
-            <PostsList gridCols="grid-cols-1 sm:grid-cols-2" />
+            <PostsList gridCols="grid-cols-1 sm:grid-cols-2 " />
           </div>
         </main>
         {/* Aside for desktop */}
-        <aside className="w-full max-w-xs bg-white border-l shadow-lg p-4 sm:p-6 hidden md:block">
+        <aside className="w-full max-w-xs bg-white border-l shadow-lg p-4 sm:p-6 hidden md:block dark:bg-gray-900 dark:border-blue-600">
           <section className="mb-8">
             <Schedule />
           </section>

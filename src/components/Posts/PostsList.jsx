@@ -133,12 +133,12 @@ const PostsList = ({
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 dark:border-blue-600 transition-colors duration-300">
       <div className="hidden lg:block fixed top-0 left-0 h-screen w-20 z-40">
         <Sidebar />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-start lg:ml-20 p-4">
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 w-full max-w-5xl">
+      <main className="flex-1 flex flex-col items-center justify-start lg:ml-20 p-4 dark:bg-gray-900 dark:border-blue-600 transition-colors duration-300">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 mb-6 w-full max-w-5xl transition-colors duration-300">
           <button
             className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-4 py-2 rounded-full shadow transition mb-4"
             onClick={handleCreatePost}
@@ -147,7 +147,7 @@ const PostsList = ({
           </button>
           {!isPreviewMode && (
             <input
-              className="w-full border border-blue-300 rounded px-4 py-2 mb-4"
+              className="w-full border border-blue-300 dark:border-blue-600 rounded px-4 py-2 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
               placeholder="Search by tag (e.g. react, javascript)..."
               value={query}
               onChange={handleSearch}
@@ -155,11 +155,11 @@ const PostsList = ({
           )}
           {loading && <div>Loading...</div>}
           {error && <div className="text-red-500">{error}</div>}
-          <ul className={`grid gap-4 ${isPreviewMode ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-2'} w-full`}>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 dark:bg-gray-900 dark:border-blue-600 transition-colors duration-300`}>
             {displayedPosts.map(post => (
-              <li
+              <div
                 key={post?.id}
-                className="bg-blue-50 rounded-xl p-4 sm:p-6 shadow flex flex-col h-56 hover:ring-2 hover:ring-indigo-300 transition"
+                className="bg-white dark:bg-gray-900 rounded-2xl shadow p-4 flex flex-col transition-colors duration-300 border border-gray-200 dark:border-gray-700"
                 onClick={() => {
                   if (post?.user?.name === "You") {
                     setSelectedPost(post);
@@ -168,18 +168,20 @@ const PostsList = ({
                   }
                 }}
               >
-                <h3 className="font-semibold text-indigo-700 mb-2 text-base sm:text-lg">{post?.title}</h3>
-                <p className="text-gray-700 mb-2 line-clamp-4 overflow-hidden">{post?.description}</p>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-2 truncate">{post.title}</h3>
+                <p className="text-gray-700 dark:text-gray-200 text-sm mb-2 overflow-hidden break-words" style={{maxHeight: '4.5em'}}>
+                  {post.desc || post.description || 'No description.'}
+                </p>
                 {Array.isArray(post?.tags) && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {post.tags.map(tag => (
-                      <span key={tag} className="px-2 py-0.5 bg-blue-200 text-blue-800 rounded-full text-xs">{tag}</span>
+                      <span key={tag} className="px-2 py-0.5 bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 rounded-full text-xs">{tag}</span>
                     ))}
                   </div>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
           {!isPreviewMode && hasMore && !loading && (
             <button
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -191,9 +193,9 @@ const PostsList = ({
 
           {/* Modal for creating a post */}
           {showModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 dark:bg-gray-900 dark:bg-opacity-80 transition-colors duration-300">
               <form
-                className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full relative"
+                className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 max-w-md w-full relative border border-gray-200 dark:border-gray-700 transition-colors duration-300"
                 onSubmit={handleSubmitPost}
               >
                 <button
@@ -204,9 +206,9 @@ const PostsList = ({
                 >
                   &times;
                 </button>
-                <h3 className="text-2xl font-bold mb-4">Create Post</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Create Post</h3>
                 <input
-                  className="w-full border border-gray-300 rounded px-3 py-2 mb-3"
+                  className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
                   placeholder="Title"
                   value={newTitle}
                   onChange={e => setNewTitle(e.target.value)}
@@ -214,7 +216,7 @@ const PostsList = ({
                   required
                 />
                 <textarea
-                  className="w-full border border-gray-300 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60"
+                  className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
                   placeholder="Description"
                   value={newDesc}
                   onChange={e => setNewDesc(e.target.value)}
@@ -222,19 +224,19 @@ const PostsList = ({
                   required
                 />
                 <input
-                  className="w-full border border-gray-300 rounded px-3 py-2 mb-3"
+                  className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
                   placeholder="Tags (comma separated, e.g. react,js)"
                   value={newTags}
                   onChange={e => setNewTags(e.target.value)}
                 />
                 <input
-                  className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+                  className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
                   placeholder="Image URL (optional)"
                   value={newImage}
                   onChange={e => setNewImage(e.target.value)}
                 />
                 <button
-                  className="w-full py-2 rounded-full bg-blue-700 text-white font-bold text-lg hover:bg-blue-800 transition"
+                  className="w-full py-2 rounded-full bg-blue-700 dark:bg-blue-900 text-white font-bold text-lg hover:bg-blue-800 dark:hover:bg-blue-700 transition"
                   type="submit"
                 >
                   Post
@@ -245,8 +247,8 @@ const PostsList = ({
 
           {/* Modal for viewing/editing a post */}
           {selectedPost && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full relative max-h-[80vh] overflow-y-auto">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 dark:bg-gray-900 dark:bg-opacity-80 transition-colors duration-300">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 max-w-md w-full relative max-h-[80vh] overflow-y-auto border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                 <button
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-2xl"
                   onClick={() => { setSelectedPost(null); setIsEditing(false); }}
@@ -258,7 +260,7 @@ const PostsList = ({
                   <form onSubmit={handleSaveEdit}>
                     <h3 className="text-2xl font-bold mb-4">Edit Post</h3>
                     <input
-                      className="w-full border border-gray-300 rounded px-3 py-2 mb-3"
+                      className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-3"
                       placeholder="Title"
                       value={editTitle}
                       onChange={e => setEditTitle(e.target.value)}
@@ -266,7 +268,7 @@ const PostsList = ({
                       required
                     />
                     <textarea
-                      className="w-full border border-gray-300 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60"
+                      className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-4 resize-y min-h-[48px] max-h-60"
                       placeholder="Description"
                       value={editDesc}
                       onChange={e => setEditDesc(e.target.value)}
@@ -274,19 +276,19 @@ const PostsList = ({
                       required
                     />
                     <input
-                      className="w-full border border-gray-300 rounded px-3 py-2 mb-3"
+                      className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-3"
                       placeholder="Tags (comma separated)"
                       value={editTags}
                       onChange={e => setEditTags(e.target.value)}
                     />
                     <input
-                      className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+                      className="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 mb-4"
                       placeholder="Image URL"
                       value={editImage}
                       onChange={e => setEditImage(e.target.value)}
                     />
                     <button
-                      className="w-full py-2 rounded-full bg-blue-700 text-white font-bold text-lg hover:bg-blue-800 transition"
+                      className="w-full py-2 rounded-full bg-blue-700 dark:bg-blue-900 text-white font-bold text-lg hover:bg-blue-800 dark:hover:bg-blue-700 transition"
                       type="submit"
                     >
                       Save
@@ -294,8 +296,8 @@ const PostsList = ({
                   </form>
                 ) : (
                   <>
-                    <h3 className="text-2xl font-bold mb-2">{selectedPost.title}</h3>
-                    <p className="mb-2 text-sm text-gray-600">By {selectedPost.user.name}</p>
+                    <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">{selectedPost.title}</h3>
+                    <p className="mb-2 text-sm text-gray-600 dark:text-gray-300">By {selectedPost.user.name}</p>
                     {selectedPost.image && selectedPost.image.trim() && (
                       <img
                         src={selectedPost.image}
@@ -304,27 +306,27 @@ const PostsList = ({
                         onError={e => { e.target.style.display = 'none'; }}
                       />
                     )}
-                    <div className="text-gray-700 mb-2 max-h-60 overflow-y-auto whitespace-pre-line">
+                    <div className="text-gray-700 dark:text-gray-200 mb-2 max-h-60 overflow-y-auto whitespace-pre-line">
                       {selectedPost.description}
                     </div>
                     {Array.isArray(selectedPost.tags) && selectedPost.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mt-2">
                         {selectedPost.tags.map(tag => (
-                          <span key={tag} className="px-2 py-0.5 bg-blue-200 text-blue-800 rounded-full text-xs">{tag}</span>
+                          <span key={tag} className="px-2 py-0.5 bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 rounded-full text-xs">{tag}</span>
                         ))}
                       </div>
                     )}
                     {selectedPost.user.name === "You" && (
                       <div className="flex gap-2 mt-4">
                         <button
-                          className="w-full py-2 rounded-full bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 transition"
+                          className="w-full py-2 rounded-full bg-blue-600 dark:bg-blue-900 text-white font-bold text-lg hover:bg-blue-700 dark:hover:bg-blue-700 transition"
                           onClick={handleEdit}
                           type="button"
                         >
                           Edit
                         </button>
                         <button
-                          className="w-full py-2 rounded-full bg-red-600 text-white font-bold text-lg hover:bg-red-700 transition"
+                          className="w-full py-2 rounded-full bg-red-600 dark:bg-red-800 text-white font-bold text-lg hover:bg-red-700 dark:hover:bg-red-900 transition"
                           onClick={() => {
                             const saved = JSON.parse(localStorage.getItem('userPosts') || '[]');
                             const updated = saved.filter(p => p.id !== selectedPost.id);

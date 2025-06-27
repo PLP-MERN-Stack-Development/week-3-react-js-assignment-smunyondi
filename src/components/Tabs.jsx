@@ -13,7 +13,7 @@ const Tabs = ({
   searchPlaceholder = "Search tasks..."
 }) => (
   <div className="w-full flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-    <div className="flex gap-2 sm:gap-4 border-b border-gray-200 overflow-x-auto">
+    <div className="flex gap-2 sm:gap-4 border-b border-gray-200 dark:border-gray-700 overflow-x-auto bg-white dark:bg-gray-900 transition-colors duration-300">
       {tabs.map(tab => (
         <button
           key={tab.value}
@@ -31,7 +31,7 @@ const Tabs = ({
     </div>
     <input
       type="text"
-      className="border border-gray-300 rounded px-3 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+      className="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded px-3 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
       placeholder={searchPlaceholder}
       value={searchValue}
       onChange={e => onSearchChange && onSearchChange(e.target.value)}
